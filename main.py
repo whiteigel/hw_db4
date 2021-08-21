@@ -45,9 +45,7 @@ for elm in track:
     ins = connection.execute(f"INSERT into track (id, title, duration) VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
 
 for elm in compilation:
-    ins = connection.execute(f"INSERT into compilation (id, title, release_date) VALUES
-    ({elm[0]},'{elm[1]}',{elm[2]});")
-
+    ins = connection.execute(f"INSERT into compilation (id, title, release_date) VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
 
 for elm in genre_artist:
     ins = connection.execute(f"INSERT into genreartist VALUES ({elm[0]},{elm[1]},{elm[2]});")
