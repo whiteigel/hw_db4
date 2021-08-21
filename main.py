@@ -74,7 +74,7 @@ compilation_2018_2020 = connection.execute("SELECT title from compilation WHERE 
 print(compilation_2018_2020)
 print()
 
-artist_name_1 = connection.execute("SELECT name from artist WHERE name NOT LIKE '%% %%';").fetchall()
+artist_name_1 = connection.execute("с").fetchall()
 print(artist_name_1)
 print()
 
