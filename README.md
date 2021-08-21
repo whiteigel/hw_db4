@@ -4,7 +4,7 @@
 
 1. Название и год выхода альбомов, вышедших в 2018 году;
 ```
-SELECT title, release_date from album WHERE release_date = 2018;
+SELECT title, release_date FROM album WHERE release_date = 2018;
 ```
 ```
 "Demi Masa"	2018
@@ -14,7 +14,7 @@ SELECT title, release_date from album WHERE release_date = 2018;
 
 2. Название и продолжительность самого длительного трека;
 ```
-SELECT title, duration from track ORDER BY duration DESC LiMIT 1;
+SELECT title, duration FROM track ORDER BY duration DESC LIMIT 1;
 ```
 
 ```
@@ -24,7 +24,7 @@ SELECT title, duration from track ORDER BY duration DESC LiMIT 1;
 3. Название треков, продолжительность которых не менее 3,5 минуты;
 
 ```
-SELECT title, duration from track WHERE duration > 210 ORDER BY duration DESC;
+SELECT title, duration FROM track WHERE duration > 210 ORDER BY duration DESC;
 ```
 
 ```
@@ -142,7 +142,7 @@ SELECT title, duration from track WHERE duration > 210 ORDER BY duration DESC;
 4. Названия сборников, вышедших в период с 2018 по 2020 год включительно;
 
 ```
-SELECT title from compilation WHERE release_date BETWEEN 2018 AND 2020;
+SELECT title FROM compilation WHERE release_date BETWEEN 2018 AND 2020;
 ```
 
 ```
@@ -156,7 +156,7 @@ SELECT title from compilation WHERE release_date BETWEEN 2018 AND 2020;
 5. Исполнители, чье имя состоит из 1 слова;
 
 ```
-SELECT name from artist WHERE name NOT LIKE '%% %%';
+SELECT name FROM artist WHERE name NOT LIKE '%% %%';
 ```
 
 ```
@@ -169,7 +169,7 @@ SELECT name from artist WHERE name NOT LIKE '%% %%';
 6. Название треков, которые содержат слово "мой"/"my".
 
 ```
-SELECT title from track WHERE title LIKE '%%My %%' OR title LIKE '%% my %%' OR title LIKE '%% мой %%' OR title LIKE '%%Мой %%';
+SELECT title FROM track WHERE title LIKE '%%My %%' OR title LIKE '%% my %%' OR title LIKE '%% мой %%' OR title LIKE '%%Мой %%';
 ```
 
 ```

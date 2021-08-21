@@ -33,44 +33,44 @@ artist_album = [(1, 5, 1), (2, 6, 2), (3, 5, 3), (4, 9, 4), (5, 7, 5)]
 track_compilation = [(1, 53, 1), (2, 54, 1), (3, 55, 1), (4, 56, 1), (5, 57, 1), (6, 58, 1), (7, 59, 1)]
 
 for elm in artists:
-     ins = connection.execute(f"INSERT into artist VALUES ({elm[0]},'{elm[1]}');")
+     ins = connection.execute(f"INSERT INTO artist VALUES ({elm[0]},'{elm[1]}');")
 
 for elm in genres:
-    ins = connection.execute(f"INSERT into genre VALUES ({elm[0]},'{elm[1]}');")
+    ins = connection.execute(f"INSERT INTO genre VALUES ({elm[0]},'{elm[1]}');")
 
 for elm in albums:
-    ins = connection.execute(f"INSERT into album VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
+    ins = connection.execute(f"INSERT INTO album VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
 
 for elm in track:
-    ins = connection.execute(f"INSERT into track (id, title, duration) VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
+    ins = connection.execute(f"INSERT INTO track (id, title, duration) VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
 
 for elm in compilation:
-    ins = connection.execute(f"INSERT into compilation (id, title, release_date) VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
+    ins = connection.execute(f"INSERT INTO compilation (id, title, release_date) VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
 
 for elm in genre_artist:
-    ins = connection.execute(f"INSERT into genreartist VALUES ({elm[0]},{elm[1]},{elm[2]});")
+    ins = connection.execute(f"INSERT INTO genreartist VALUES ({elm[0]},{elm[1]},{elm[2]});")
 
 for elm in artist_album:
-    ins = connection.execute(f"INSERT into artistalbum VALUES ({elm[0]},{elm[1]},{elm[2]});")
+    ins = connection.execute(f"INSERT INTO artistalbum VALUES ({elm[0]},{elm[1]},{elm[2]});")
 
 for elm in track_compilation:
-    ins = connection.execute(f"INSERT into trackcompilation VALUES ({elm[0]},{elm[1]},{elm[2]});")
+    ins = connection.execute(f"INSERT INTO trackcompilation VALUES ({elm[0]},{elm[1]},{elm[2]});")
 
 
-release_date_2018 = connection.execute("SELECT title, release_date from album WHERE release_date = 2018;").fetchall()
+release_date_2018 = connection.execute("SELECT title, release_date FROM album WHERE release_date = 2018;").fetchall()
 print(pd.DataFrame(release_date_2018))
 print()
 
-longest_track = connection.execute("SELECT title, duration from track ORDER BY duration DESC LiMIT 1;").fetchall()
+longest_track = connection.execute("SELECT title, duration FROM track ORDER BY duration DESC LIMIT 1;").fetchall()
 print(longest_track)
 print()
 
-duration_3_5_min = connection.execute("SELECT title, duration from track WHERE duration > 210 "
+duration_3_5_min = connection.execute("SELECT title, duration FROM track WHERE duration > 210 "
                                       "ORDER BY duration DESC;").fetchall()
 print(pd.DataFrame(duration_3_5_min))
 print()
 
-compilation_2018_2020 = connection.execute("SELECT title from compilation WHERE release_date BETWEEN 2018 AND 2020;").fetchall()
+compilation_2018_2020 = connection.execute("SELECT title FROM compilation WHERE release_date BETWEEN 2018 AND 2020;").fetchall()
 print(compilation_2018_2020)
 print()
 
@@ -78,6 +78,6 @@ artist_name_1 = connection.execute("с").fetchall()
 print(artist_name_1)
 print()
 
-my_track = connection.execute("SELECT title from track WHERE title LIKE '%%My %%' OR title LIKE '%% my %%' "
+my_track = connection.execute("SELECT title FROM track WHERE title LIKE '%%My %%' OR title LIKE '%% my %%' "
                               "OR title LIKE '%% мой %%' OR title LIKE '%%Мой %%';").fetchall()
 print(my_track)
