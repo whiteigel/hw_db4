@@ -1,4 +1,6 @@
-### SQL Requests and Results
+# SQL Requests and Results
+
+В данном файле только запросы типа SELECT и результаты этих сапросов. Запросы INSERT, так же как и SELECT, в файле main.py.
 
 1. Название и год выхода альбомов, вышедших в 2018 году;
 ```
