@@ -33,28 +33,28 @@ artist_album = [(1, 5, 1), (2, 6, 2), (3, 5, 3), (4, 9, 4), (5, 7, 5)]
 track_compilation = [(1, 53, 1), (2, 54, 1), (3, 55, 1), (4, 56, 1), (5, 57, 1), (6, 58, 1), (7, 59, 1)]
 
 for elm in artists:
-     ins = connection.execute(f"INSERT INTO artist VALUES ({elm[0]},'{elm[1]}');")
+     ins = connection.execute(f"INSERT INTO artist VALUES ({elm[0]},'{elm[1]}') ON CONFLICT DO NOTHING;")
 
 for elm in genres:
-    ins = connection.execute(f"INSERT INTO genre VALUES ({elm[0]},'{elm[1]}');")
+    ins = connection.execute(f"INSERT INTO genre VALUES ({elm[0]},'{elm[1]}') ON CONFLICT DO NOTHING;")
 
 for elm in albums:
-    ins = connection.execute(f"INSERT INTO album VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
+    ins = connection.execute(f"INSERT INTO album VALUES ({elm[0]},'{elm[1]}',{elm[2]}) ON CONFLICT DO NOTHING;")
 
 for elm in track:
-    ins = connection.execute(f"INSERT INTO track (id, title, duration) VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
+    ins = connection.execute(f"INSERT INTO track (id, title, duration) VALUES ({elm[0]},'{elm[1]}',{elm[2]}) ON CONFLICT DO NOTHING;")
 
 for elm in compilation:
-    ins = connection.execute(f"INSERT INTO compilation (id, title, release_date) VALUES ({elm[0]},'{elm[1]}',{elm[2]});")
+    ins = connection.execute(f"INSERT INTO compilation (id, title, release_date) VALUES ({elm[0]},'{elm[1]}',{elm[2]}) ON CONFLICT DO NOTHING;")
 
 for elm in genre_artist:
-    ins = connection.execute(f"INSERT INTO genreartist VALUES ({elm[0]},{elm[1]},{elm[2]});")
+    ins = connection.execute(f"INSERT INTO genreartist VALUES ({elm[0]},{elm[1]},{elm[2]}) ON CONFLICT DO NOTHING;")
 
 for elm in artist_album:
-    ins = connection.execute(f"INSERT INTO artistalbum VALUES ({elm[0]},{elm[1]},{elm[2]});")
+    ins = connection.execute(f"INSERT INTO artistalbum VALUES ({elm[0]},{elm[1]},{elm[2]}) ON CONFLICT DO NOTHING;")
 
 for elm in track_compilation:
-    ins = connection.execute(f"INSERT INTO trackcompilation VALUES ({elm[0]},{elm[1]},{elm[2]});")
+    ins = connection.execute(f"INSERT INTO trackcompilation VALUES ({elm[0]},{elm[1]},{elm[2]}) ON CONFLICT DO NOTHING;")
 
 
 release_date_2018 = connection.execute("SELECT title, release_date FROM album WHERE release_date = 2018;").fetchall()
