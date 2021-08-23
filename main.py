@@ -5,6 +5,10 @@ db = 'postgresql://postgres@localhost:5432/netology'
 engine = sqlalchemy.create_engine(db)
 connection = engine.connect()
 
+def run_select(sql):
+    res = connection.execute(f"{sql}").fetchall()
+    return res
+
 genres = [(1,  'pop'), (2, 'rock'), (3, 'jazz'), (4, 'hiphop'), (5, 'indie'), (6, 'blues')]
 
 artists = [(3, 'AC/DC'), (4, 'Bon Jovi'), (5, 'Moby'), (6, 'Morgue Vanguard'), (7, 'Da Molotov'),
@@ -57,27 +61,37 @@ for elm in track_compilation:
     ins = connection.execute(f"INSERT INTO trackcompilation VALUES ({elm[0]},{elm[1]},{elm[2]}) ON CONFLICT DO NOTHING;")
 
 
-release_date_2018 = connection.execute("SELECT title, release_date FROM album WHERE release_date = 2018;").fetchall()
+release_date_2018_sql = 'SELECT title, release_date from album WHERE release_date = 2018;'
+
+release_date_2018 = run_select(release_date_2018_sql)
 print(pd.DataFrame(release_date_2018))
 print()
 
-longest_track = connection.execute("SELECT title, duration FROM track ORDER BY duration DESC LIMIT 1;").fetchall()
+longest_track_sql = 'SELECT title, duration FROM track ORDER BY duration DESC LIMIT 1;'
+
+longest_track = run_select(longest_track_sql)
 print(longest_track)
 print()
 
-duration_3_5_min = connection.execute("SELECT title, duration FROM track WHERE duration > 210 "
-                                      "ORDER BY duration DESC;").fetchall()
+duration_3_5_min_sql = 'SELECT title, duration FROM track WHERE duration > 210 ORDER BY duration DESC;'
+
+duration_3_5_min = run_select(duration_3_5_min_sql)
 print(pd.DataFrame(duration_3_5_min))
 print()
 
-compilation_2018_2020 = connection.execute("SELECT title FROM compilation WHERE release_date BETWEEN 2018 AND 2020;").fetchall()
+compilation_2018_2020_sql = 'SELECT title FROM compilation WHERE release_date BETWEEN 2018 AND 2020;'
+
+compilation_2018_2020 = run_select(compilation_2018_2020_sql)
 print(compilation_2018_2020)
 print()
 
-artist_name_1 = connection.execute("SELECT name from artist WHERE name NOT LIKE '%% %%';").fetchall()
+artist_name_1_sql = "SELECT name from artist WHERE name NOT LIKE '%% %%';"
+
+artist_name_1 = run_select(artist_name_1_sql)
 print(artist_name_1)
 print()
 
-my_track = connection.execute("SELECT title FROM track WHERE title LIKE '%%My %%' OR title LIKE '%% my %%' "
-                              "OR title LIKE '%% мой %%' OR title LIKE '%%Мой %%';").fetchall()
+
+my_track_sql = "SELECT title FROM track WHERE title LIKE '%%My %%' OR title LIKE '%% my %%' OR title LIKE '%% мой %%' OR title LIKE '%%Мой %%';"
+my_track = run_select(my_track_sql)
 print(my_track)
